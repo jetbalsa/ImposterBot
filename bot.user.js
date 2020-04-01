@@ -75,7 +75,7 @@ Loses: ${loses.length} (${((loses.length/(wins.length+loses.length))*100).toFixe
 `;
 }
 
-let wins = [], loses = [];
+window.wins = []; window.loses = [];
 setInterval(async () => {
     let game = await play();
     let submit = await submitAnswerToDB(game[0].trim(), game[1], game[2]);
