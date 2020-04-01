@@ -3,11 +3,11 @@ This bot randomly chooses a entry and reports all data to spacescience.tech for 
 
 Basic Usage, 
 
-1) Install TamperMonkey
+1) Install TamperMonkey https://www.tampermonkey.net/
 2) Browse to this: https://github.com/JRWR/ImposterBot/raw/master/bot.user.js
 3) Click Install
 4) Goto https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
-5) Press F11 and goto Console to see current stats
+5) It will display all the requests its sending and its success rate
 
 
 PRs WELCOME!!
