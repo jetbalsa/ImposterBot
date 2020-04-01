@@ -5,7 +5,7 @@
 // https://discord.gg/pZrRcfE - Discord for /r/imposter
 
 /////////// UPDATED BY [@JRWR /u/xJRWR] for central data logging at spacescience.tech
-
+// for use on the url of https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
 /*
 Copyright 2020 dimden
 
