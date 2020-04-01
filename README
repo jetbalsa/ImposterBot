@@ -1,0 +1,7 @@
+Basic Usage, 
+
+goto https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
+
+open up your browser javascript console and paste the contents of bot.js
+
+watch console as stats are printed every so often.
