@@ -1,20 +1,14 @@
-// Imposter bot by dimden, updated by JRWR
+// ==UserScript==
+// @name         Reddit April Fools Imposter Bot
+// @namespace    jrwr.io
+// @version      1.0.0
+// @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
+// @author       dimden updated by jrwr
+// @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
+// @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop*
 
-// https://dimden.dev/ - My website
-// https://discord.gg/k4u7ddk - My main discord server
-// https://discord.gg/pZrRcfE - Discord for /r/imposter
+// ==/UserScript==
 
-/////////// UPDATED BY [@JRWR /u/xJRWR] for central data logging at spacescience.tech
-// for use on the url of https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
-/*
-Copyright 2020 dimden
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-*/
 
 async function getRoom() {
     let res = await (await fetch("https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop")).text();
