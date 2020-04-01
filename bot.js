@@ -1,4 +1,4 @@
-// Imposter bot by dimden
+// Imposter bot by dimden, updated by JRWR
 
 // https://dimden.dev/ - My website
 // https://discord.gg/k4u7ddk - My main discord server
