@@ -1,13 +1,21 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      1.0.0
+// @version      1.0.1
 // @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
 // @author       dimden updated by jrwr
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop*
 
 // ==/UserScript==
+
+document.getElementsByTagName("head")[0].insertAdjacentHTML(
+    "beforeend",
+    "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css\" />");
+
+var imported = document.createElement('script');
+imported.src = 'https://cdn.jsdelivr.net/npm/toastify-js';
+document.head.appendChild(imported);
 
 
 async function getRoom() {
@@ -35,7 +43,7 @@ async function submitAnswer(token, id) {
 async function play() {
     let room = await getRoom();
     let answer = 0, found = false;
-    room.options.forEach((o, i) => { // shit, predicts badly (gonna update soon)
+    room.options.forEach((o, i) => { 
         if(!found && !o[1].startsWith("i") && !o[1].endsWith("?")) {
             found = true;
             answer = i;
@@ -74,5 +82,16 @@ setInterval(async () => {
     game[0] = game[0].trim();
     if(game[1] === "WIN") wins.push(game[0]);
     else if(game[1] === "LOSE") loses.push(game[0]);
+Toastify({
+  text: game[0] + " "+ game[1],
+  duration: 1000, 
+  newWindow: true,
+  close: true,
+  gravity: "top", // `top` or `bottom`
+  position: 'left', // `left`, `center` or `right`
+  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+  stopOnFocus: false, // Prevents dismissing of toast on hover
+}).showToast();
+
 }, 1250)
 setInterval(() => {console.log(getStats())}, 20000);
