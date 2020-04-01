@@ -94,4 +94,16 @@ Toastify({
 }).showToast();
 
 }, 1250)
-setInterval(() => {console.log(getStats())}, 20000);
+setInterval(() => {
+    let curstatus = getStats();
+Toastify({
+  text: curstatus,
+  duration: 10000, 
+  newWindow: true,
+  close: true,
+  gravity: "top", // `top` or `bottom`
+  position: 'left', // `left`, `center` or `right`
+  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+  stopOnFocus: false, // Prevents dismissing of toast on hover
+}).showToast();
+}, 20000);
