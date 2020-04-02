@@ -1,6 +1,6 @@
 # ImposterBot
 
-This bot uses and sends data from https://spacescience.tech to find the imposter! Average winrate: 90%.
+This bot uses and sends data from https://spacescience.techto find the imposter! Average winrate: 75%.
 
 ## Usage:
 
