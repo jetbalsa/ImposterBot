@@ -10,7 +10,6 @@
 // @require      https://github.com/LeoVerto/doorman/raw/master/doorman-lib.js?v=0.9
 // @updateurl    https://github.com/jrwr/imposterbot/raw/master/bot.user.js
 // ==/UserScript==
-let locked = 0;
 
 document.getElementsByTagName("head")[0].insertAdjacentHTML(
     "beforeend",
@@ -122,8 +121,6 @@ Loses: ${loses.length} (${((loses.length/(wins.length+loses.length))*100).toFixe
 window.last = "INVALID";
 window.wins = []; window.loses = [];
 setInterval(async () => {
-	if(locked === 0){
-    locked = 1
     let t0 = performance.now();
     let game = await play();
     submitAnswerToDB(game[0].trim(), game[1], game[2]).then(
@@ -146,9 +143,7 @@ setInterval(async () => {
             }).showToast();
         }
     )
-    locked = 0;
-}
-}, 500)
+}, 900)
 
 setInterval(() => {
     let curstatus = getStats();
