@@ -117,8 +117,8 @@ async function submitAnswerToDB(answer, result, room) {
 }
 function getStats() {
     console.log(wins);
-    return `All: ${wins.length+loses.length}
-Wins: ${wins.length} (${((wins.length/(wins.length+loses.length))*100).toFixed(1)}%)
+    return `All: ${wins.length+loses.length} -
+Wins: ${wins.length} (${((wins.length/(wins.length+loses.length))*100).toFixed(1)}%),
 Loses: ${loses.length} (${((loses.length/(wins.length+loses.length))*100).toFixed(1)}%)
 `;
 }
@@ -133,8 +133,8 @@ setInterval(async () => {
     if(game[1] === "WIN") wins.push(game[0]);
     else if(game[1] === "LOSE") loses.push(game[0]);
 Toastify({
-  text: game[0] + " "+ game[1],
-  duration: 1000, 
+  text: game[1] + ": "+ game[0],
+  duration: 5000, 
   newWindow: true,
   close: true,
   gravity: "top", // `top` or `bottom`
@@ -151,10 +151,10 @@ Toastify({
   text: curstatus,
   duration: 10000, 
   newWindow: true,
-  close: true,
-  gravity: "top", // `top` or `bottom`
-  position: 'left', // `left`, `center` or `right`
-  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+  close: false,
+  gravity: "bottom", // `top` or `bottom`
+  position: 'right', // `left`, `center` or `right`
+  backgroundColor: "linear-gradient(to right, #cf00c1, #3d49c9)",
   stopOnFocus: false, // Prevents dismissing of toast on hover
 }).showToast();
-}, 20000);
+}, 10000);
