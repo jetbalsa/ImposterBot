@@ -134,7 +134,7 @@ setInterval(async () => {
     else if(game[1] === "LOSE") loses.push(game[0]);
 Toastify({
   text: game[0] + " "+ game[1],
-  duration: 1000, 
+  duration: 5000, 
   newWindow: true,
   close: true,
   gravity: "top", // `top` or `bottom`
@@ -149,11 +149,11 @@ setInterval(() => {
     let curstatus = getStats();
 Toastify({
   text: curstatus,
-  duration: 10000, 
+  duration: 20000, 
   newWindow: true,
   close: true,
-  gravity: "top", // `top` or `bottom`
-  position: 'left', // `left`, `center` or `right`
+  gravity: "bottom", // `top` or `bottom`
+  position: 'right', // `left`, `center` or `right`
   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
   stopOnFocus: false, // Prevents dismissing of toast on hover
 }).showToast();
