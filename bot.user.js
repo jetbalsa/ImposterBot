@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      1.1.2
+// @version      1.1.3
 // @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
 // @author       dimden, jrwr, px, qqii
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
@@ -166,7 +166,7 @@ Toastify({
   stopOnFocus: false, // Prevents dismissing of toast on hover
 }).showToast();
     
-    if(location.href.includes("results?")) fetch(location.href).then(i => i.text()).then(html => {
+    if(location.href.includes("results?") && !document.hidden) fetch(location.href).then(i => i.text()).then(html => {
         let parser = new DOMParser();
         let doc = parser.parseFromString(html, "text/html");
         document.getElementsByTagName("gremlin-app")[0].innerHTML = doc.getElementsByTagName("gremlin-app")[0].innerHTML;
