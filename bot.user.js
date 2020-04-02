@@ -132,6 +132,7 @@ setInterval(async () => {
             else if(game[1] === "LOSE") loses.push(game[0]);
             last = game[1];
             if (game[1] == "WIN")
+            {
                 Toastify({
                   text: game[1] + ": "+ game[0],
                   duration: 5000,
@@ -142,7 +143,9 @@ setInterval(async () => {
                   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
                   stopOnFocus: false, // Prevents dismissing of toast on hover
                 }).showToast();
+            }
             else if (game[1] == "LOSE")
+            {
                 Toastify({
                   text: game[1] + ": "+ game[0],
                   duration: 5000,
@@ -153,6 +156,7 @@ setInterval(async () => {
                   backgroundColor: "linear-gradient(to right, #b00023, #c93d54)",
                   stopOnFocus: false, // Prevents dismissing of toast on hover
                 }).showToast();
+            }
         }
     )
 }, 1200)
