@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      1.1.0
+// @version      1.1.2
 // @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
 // @author       dimden, jrwr, px, qqii
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
@@ -11,13 +11,13 @@
 // @updateurl    https://github.com/jrwr/imposterbot/raw/master/bot.user.js
 // ==/UserScript==
 
-var locked = 0;
+let locked = 0;
 
 document.getElementsByTagName("head")[0].insertAdjacentHTML(
     "beforeend",
     "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css\" />");
 
-var imported = document.createElement('script');
+let imported = document.createElement('script');
 imported.src = 'https://cdn.jsdelivr.net/npm/toastify-js';
 document.head.appendChild(imported);
 
@@ -56,7 +56,7 @@ async function asyncForEach(array, callback) {
 async function play() {
     let room = await getRoom();
     let answer = 0, maxDetector = 0;
-    console.log(room.options);
+    console.table(room.options);
 
     // would be nicer if this just took single like the rest
     console.log("abra");
@@ -165,4 +165,10 @@ Toastify({
   backgroundColor: "linear-gradient(to right, #cf00c1, #3d49c9)",
   stopOnFocus: false, // Prevents dismissing of toast on hover
 }).showToast();
+    
+    if(location.href.includes("results?")) fetch(location.href).then(i => i.text()).then(html => {
+        let parser = new DOMParser();
+        let doc = parser.parseFromString(html, "text/html");
+        document.getElementsByTagName("gremlin-app")[0].innerHTML = doc.getElementsByTagName("gremlin-app")[0].innerHTML;
+    })
 }, 10000);
