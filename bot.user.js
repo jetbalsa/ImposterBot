@@ -117,8 +117,8 @@ async function submitAnswerToDB(answer, result, room) {
 }
 function getStats() {
     console.log(wins);
-    return `All: ${wins.length+loses.length}
-Wins: ${wins.length} (${((wins.length/(wins.length+loses.length))*100).toFixed(1)}%)
+    return `All: ${wins.length+loses.length} -
+Wins: ${wins.length} (${((wins.length/(wins.length+loses.length))*100).toFixed(1)}%),
 Loses: ${loses.length} (${((loses.length/(wins.length+loses.length))*100).toFixed(1)}%)
 `;
 }
@@ -149,12 +149,12 @@ setInterval(() => {
     let curstatus = getStats();
 Toastify({
   text: curstatus,
-  duration: 20000, 
+  duration: 10000, 
   newWindow: true,
-  close: true,
+  close: false,
   gravity: "bottom", // `top` or `bottom`
   position: 'right', // `left`, `center` or `right`
-  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+  backgroundColor: "linear-gradient(to right, #cf00c1, #3d49c9)",
   stopOnFocus: false, // Prevents dismissing of toast on hover
 }).showToast();
-}, 20000);
+}, 10000);
