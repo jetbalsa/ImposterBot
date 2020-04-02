@@ -60,6 +60,7 @@ async function play() {
     let abraP = checkExistingAbra(room.options.flatMap(x => x[0]));
     let spacP = Promise.all(room.options.flatMap(x => checkExistingSpacescience(x[0])));
     // let deteP = Promise.all(room.options.flatMap(x => checkDetector(x[1])));
+    // cost of accuracy
 
     let [abra, space/*, detector*/] = await Promise.all([abraP, spacP/*, deteP*/]);
 
