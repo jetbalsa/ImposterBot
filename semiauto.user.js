@@ -8,7 +8,7 @@
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop*
 // @match        https://gremlins-api.reddit.com/results?*
 // @require      https://github.com/LeoVerto/doorman/raw/master/doorman-lib.js?v=0.9
-// @updateurl    https://github.com/jrwr/imposterbot/raw/master/bot.user.js
+// @updateurl    https://github.com/jrwr/imposterbot/raw/master/semiauto.user.js
 // ==/UserScript==
 
 document.getElementsByTagName("head")[0].insertAdjacentHTML(
