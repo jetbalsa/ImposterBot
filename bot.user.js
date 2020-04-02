@@ -7,14 +7,10 @@
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop*
 // @match        https://gremlins-api.reddit.com/results?*
-
+// @require      https://github.com/LeoVerto/doorman/raw/master/doorman-lib.js?v=0.9
+// @updateurl    https://github.com/jrwr/imposterbot/raw/master/bot.user.js
 // ==/UserScript==
 
-const DETECTOR_URL = "https://detector.abra.me/?";
-const CHECK_URL = "https://librarian.abra.me/check";
-const SUBMIT_URL = "https://librarian.abra.me/submit";
-const SPACESCIENCE_URL = "https://spacescience.tech/check.php?id=";
-const OCEAN_URL = "https://wave.ocean.rip/answers/answer?text=";
 var locked = 0;
 
 document.getElementsByTagName("head")[0].insertAdjacentHTML(
@@ -37,28 +33,6 @@ async function getRoom() {
     };
 };
 
-async function checkExistingSpacescience(id) {
-
-   let res = await (await fetch("https://spacescience.tech/check.php?id=" + id)).text();
-   let json = JSON.parse(res);
-
-
-    console.log(json);
-
-    for (key in json) {
-        if (json[key].hasOwnProperty("flag")) {
-            if (json[key].flag = 1) {
-                console.log(json[key]);
-                switch(json[key].result) {
-                    case "LOSE":
-                        return "human";
-                }
-            }
-        }
-    }
-    return "bot";
-}
-
 
 async function submitAnswer(token, id) {
     let body = new FormData();
@@ -77,23 +51,57 @@ async function asyncForEach(array, callback) {
     await callback(array[index], index, array);
   }
 }
+
+
 async function play() {
     let room = await getRoom();
-    let answer = 0, found = false;
+    let answer = 0, maxDetector = 0;
     console.log(room.options);
 
-    for (let i = 0; i < room.options.length; i++) {
-        [o, z] = room.options[i];
-        let space = await checkExistingSpacescience(o);
-        console.log(o);
-        if(space === "human"){
-           
-        }else{
-            answer = i;
-            console.log("Picking "+z+" with " + o[1]);
-            break;
-        }
+    // would be nicer if this just took single like the rest
+    console.log("abra");
+    let results = await checkExistingAbra(room.options.flatMap(x => x[0]));
 
+    for (let i = 0; i < room.options.length; i++) {
+        // o is id
+        // z is string
+        let [o, z] = room.options[i];
+        if (results[i] === "unknown") {
+            // if abra took single you could make this a for loop
+            // with random server ordering
+            // but would also have to make all take argument of both
+            console.log("spacescience");
+            let space = await checkExistingSpacescience(o);
+            if (space === "known fake") {
+                answer = i;
+                break;
+            } else if (space === "known human") {
+                continue;
+            } else {
+                // can't use for now, 404s
+                // console.log("ocean");
+                // let ocean = await checkExistingOcean(z);
+                // if (ocean === "known fake") {
+                //     answer = i;
+                //     break;
+                // } else if (ocean === "known human") {
+                //     continue;
+                // } else {
+                    console.log("detector");
+                    let detector = await checkDetector(z);
+                    if (detector > maxDetector) {
+                        maxDetector = detector;
+                        answer = i;
+                        continue;
+                    }
+                // }
+            }
+        } else if (results[i] === "known fake") {
+            answer = i;
+            break;
+        } else if (results[i] === "known human") {
+            continue;
+        }
     };
 
 
