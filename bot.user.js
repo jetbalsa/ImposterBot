@@ -5,7 +5,7 @@
 // @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
 // @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px, qqii, cg
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
-// @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop*
+// @match        https://gremlins-api.reddit.com/room*
 // @match        https://gremlins-api.reddit.com/results?*
 // @require      https://github.com/LeoVerto/doorman/raw/master/doorman-lib.js?v=0.9
 // @updateurl    https://github.com/jrwr/imposterbot/raw/master/bot.user.js
