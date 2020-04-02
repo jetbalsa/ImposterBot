@@ -1,9 +1,9 @@
 // ==UserScript==
-// @name         Reddit April Fools Imposter Bot
+// @name         Reddit April Fools Imposter Bot (With Different Colours)
 // @namespace    jrwr.io
-// @version      1.1.5
+// @version      1.1.6
 // @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
-// @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px, qqii
+// @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px, qqii, cg
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop*
 // @match        https://gremlins-api.reddit.com/results?*
@@ -131,7 +131,7 @@ setInterval(async () => {
             if(game[1] === "WIN") wins.push(game[0]);
             else if(game[1] === "LOSE") loses.push(game[0]);
             last = game[1];
-            if (game[1] == "WIN");
+            if (game[1] == "WIN")
                 Toastify({
                   text: game[1] + ": "+ game[0],
                   duration: 5000,
@@ -142,7 +142,7 @@ setInterval(async () => {
                   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
                   stopOnFocus: false, // Prevents dismissing of toast on hover
                 }).showToast();
-            else if (game[1] == "LOSE");
+            else if (game[1] == "LOSE")
                 Toastify({
                   text: game[1] + ": "+ game[0],
                   duration: 5000,
