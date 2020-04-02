@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      1.0.9
+// @version      1.0.10
 // @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
 // @author       dimden updated by jrwr
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
@@ -91,7 +91,7 @@ async function play() {
         }else{
             answer = i;
             console.log("Picking "+z+" with " + o[1]);
-            break(); 
+            break;
         }
 
     };
