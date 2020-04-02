@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Semiauto Imposter Bot
 // @namespace    jrwr.io
-// @version      1.0.0
+// @version      1.0.1
 // @description  Semiautomatic version from the Imposter Bot for Reddit's April Fools Day 2020.
-// @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px, qqii, NightHawkCanada
+// @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px, qqii, NightHawkCanada, cg
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop*
 // @match        https://gremlins-api.reddit.com/results?*
@@ -154,16 +154,44 @@ setInterval(async () => {
             if(game[1] === "WIN") wins.push(game[0]);
             else if(game[1] === "LOSE") loses.push(game[0]);
             last = game[1];
-            Toastify({
-              text: game[1] + ": "+ game[0],
-              duration: 5000,
-              newWindow: true,
-              close: true,
-              gravity: "top", // `top` or `bottom`
-              position: 'left', // `left`, `center` or `right`
-              backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-              stopOnFocus: false, // Prevents dismissing of toast on hover
-            }).showToast();
+            if (game[1] == "WIN")
+            {
+                Toastify({
+                  text: game[1] + ": "+ game[0],
+                  duration: 5000,
+                  newWindow: true,
+                  close: true,
+                  gravity: "top", // `top` or `bottom`
+                  position: 'left', // `left`, `center` or `right`
+                  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                  stopOnFocus: false, // Prevents dismissing of toast on hover
+                }).showToast();
+            }
+            else if (game[1] == "LOSE")
+            {
+                Toastify({
+                  text: game[1] + ": "+ game[0],
+                  duration: 5000,
+                  newWindow: true,
+                  close: true,
+                  gravity: "top", // `top` or `bottom`
+                  position: 'left', // `left`, `center` or `right`
+                  backgroundColor: "linear-gradient(to right, #b00023, #c93d54)",
+                  stopOnFocus: false, // Prevents dismissing of toast on hover
+                }).showToast();
+            }
+            else if (game[1] == "INVALID")
+            {
+                Toastify({
+                  text: game[1] + ": "+ game[0],
+                  duration: 5000,
+                  newWindow: true,
+                  close: true,
+                  gravity: "top", // `top` or `bottom`
+                  position: 'left', // `left`, `center` or `right`
+                  backgroundColor: "linear-gradient(to right, #423e3f, #8f8b8c)",
+                  stopOnFocus: false, // Prevents dismissing of toast on hover
+                }).showToast();
         }
     )
 }, 1200)
