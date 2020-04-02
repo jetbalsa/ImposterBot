@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      1.0.7
+// @version      1.0.8
 // @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
 // @author       dimden updated by jrwr
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
@@ -15,7 +15,7 @@ const CHECK_URL = "https://librarian.abra.me/check";
 const SUBMIT_URL = "https://librarian.abra.me/submit";
 const SPACESCIENCE_URL = "https://spacescience.tech/check.php?id=";
 const OCEAN_URL = "https://wave.ocean.rip/answers/answer?text=";
-
+var locked = 0;
 
 document.getElementsByTagName("head")[0].insertAdjacentHTML(
     "beforeend",
@@ -124,6 +124,8 @@ Loses: ${loses.length} (${((loses.length/(wins.length+loses.length))*100).toFixe
 
 window.wins = []; window.loses = [];
 setInterval(async () => {
+	if(locked === 0){
+	locked = 1
     let game = await play();
     let submit = await submitAnswerToDB(game[0].trim(), game[1], game[2]);
     game[0] = game[0].trim();
@@ -139,8 +141,9 @@ Toastify({
   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
   stopOnFocus: false, // Prevents dismissing of toast on hover
 }).showToast();
-
-}, 1250)
+   locked = 0;
+}
+}, 2000)
 setInterval(() => {
     let curstatus = getStats();
 Toastify({
