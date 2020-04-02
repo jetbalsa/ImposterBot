@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      2.0.0
+// @version      1.0.6
 // @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
 // @author       dimden updated by jrwr
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
@@ -9,6 +9,13 @@
 // @match        https://gremlins-api.reddit.com/results?*
 
 // ==/UserScript==
+
+const DETECTOR_URL = "https://detector.abra.me/?";
+const CHECK_URL = "https://librarian.abra.me/check";
+const SUBMIT_URL = "https://librarian.abra.me/submit";
+const SPACESCIENCE_URL = "https://spacescience.tech/check.php?id=";
+const OCEAN_URL = "https://wave.ocean.rip/answers/answer?text=";
+
 
 const DETECTOR_URL = "https://detector.abra.me/?";
 const CHECK_URL = "https://librarian.abra.me/check";
