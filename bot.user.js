@@ -157,6 +157,19 @@ setInterval(async () => {
                   stopOnFocus: false, // Prevents dismissing of toast on hover
                 }).showToast();
             }
+            else if (game[1] == "INVALID")
+            {
+                Toastify({
+                  text: game[1] + ": "+ game[0],
+                  duration: 5000,
+                  newWindow: true,
+                  close: true,
+                  gravity: "top", // `top` or `bottom`
+                  position: 'left', // `left`, `center` or `right`
+                  backgroundColor: "linear-gradient(to right, #423e3f, #8f8b8c)",
+                  stopOnFocus: false, // Prevents dismissing of toast on hover
+                }).showToast();
+            }
         }
     )
 }, 1200)
