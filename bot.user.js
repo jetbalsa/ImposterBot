@@ -143,7 +143,7 @@ setInterval(async () => {
             }).showToast();
         }
     )
-}, 900)
+}, 1200)
 
 setInterval(() => {
     let curstatus = getStats();
