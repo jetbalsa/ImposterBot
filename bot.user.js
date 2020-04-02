@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      1.0.4
+// @version      2.0.0
 // @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
 // @author       dimden updated by jrwr
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
@@ -9,6 +9,13 @@
 // @match        https://gremlins-api.reddit.com/results?*
 
 // ==/UserScript==
+
+const DETECTOR_URL = "https://detector.abra.me/?";
+const CHECK_URL = "https://librarian.abra.me/check";
+const SUBMIT_URL = "https://librarian.abra.me/submit";
+const SPACESCIENCE_URL = "https://spacescience.tech/check.php?id=";
+const OCEAN_URL = "https://wave.ocean.rip/answers/answer?text=";
+
 
 document.getElementsByTagName("head")[0].insertAdjacentHTML(
     "beforeend",
@@ -29,6 +36,30 @@ async function getRoom() {
         options: Array.from(doc.getElementsByTagName("gremlin-note")).map(e => [e.id, e.innerText])
     };
 };
+
+async function checkExistingSpacescience(id) {
+
+   let res = await (await fetch("https://spacescience.tech/check.php?id=" + id)).text();
+   let json = JSON.parse(res);
+
+
+    console.log(json);
+
+    for (key in json) {
+        if (json[key].hasOwnProperty("flag")) {
+            if (json[key].flag = 1) {
+                console.log(json[key]);
+                switch(json[key].result) {
+                    case "LOSE":
+                        return "human";
+                }
+            }
+        }
+    }
+    return "bot";
+}
+
+
 async function submitAnswer(token, id) {
     let body = new FormData();
     body.append("undefined", "undefined");
@@ -41,15 +72,30 @@ async function submitAnswer(token, id) {
 
     return JSON.parse(res);
 }
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+}
 async function play() {
     let room = await getRoom();
     let answer = 0, found = false;
-    room.options.forEach((o, i) => { 
-        if(!found && !o[1].startsWith("i") && !o[1].endsWith("?")) {
-            found = true;
+    console.log(room.options);
+
+    for (let i = 0; i < room.options.length; i++) {
+        [o, z] = room.options[i];
+        let space = await checkExistingSpacescience(o);
+        console.log(o);
+        if(space === "human"){
+           
+        }else{
             answer = i;
+            console.log("Picking "+z+" with " + o[1]);
         }
-    });
+
+    };
+
+
     let result = await submitAnswer(room.token, room.options[answer][0]);
 
     return [room.options[answer][1], result.result, room];
