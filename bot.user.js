@@ -133,7 +133,7 @@ setInterval(async () => {
     if(game[1] === "WIN") wins.push(game[0]);
     else if(game[1] === "LOSE") loses.push(game[0]);
 Toastify({
-  text: game[0] + " "+ game[1],
+  text: game[1] + ": "+ game[0],
   duration: 5000, 
   newWindow: true,
   close: true,
