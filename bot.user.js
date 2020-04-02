@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      1.1.6
+// @version      1.1.7
 // @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
 // @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px, qqii, cg
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
