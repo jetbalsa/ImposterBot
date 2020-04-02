@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      1.1.3
+// @version      1.1.4
 // @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
 // @author       dimden, jrwr, px, qqii
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
@@ -130,7 +130,7 @@ Wins: ${wins.length} (${((wins.length/(wins.length+loses.length))*100).toFixed(1
 Loses: ${loses.length} (${((loses.length/(wins.length+loses.length))*100).toFixed(1)}%)
 `;
 }
-
+window.last = "INVALID";
 window.wins = []; window.loses = [];
 setInterval(async () => {
 	if(locked === 0){
@@ -140,9 +140,10 @@ setInterval(async () => {
     game[0] = game[0].trim();
     if(game[1] === "WIN") wins.push(game[0]);
     else if(game[1] === "LOSE") loses.push(game[0]);
+    last = game[1];
 Toastify({
   text: game[1] + ": "+ game[0],
-  duration: 5000, 
+  duration: 5000,
   newWindow: true,
   close: true,
   gravity: "top", // `top` or `bottom`
@@ -157,7 +158,7 @@ setInterval(() => {
     let curstatus = getStats();
 Toastify({
   text: curstatus,
-  duration: 10000, 
+  duration: 10000,
   newWindow: true,
   close: false,
   gravity: "bottom", // `top` or `bottom`
@@ -165,8 +166,8 @@ Toastify({
   backgroundColor: "linear-gradient(to right, #cf00c1, #3d49c9)",
   stopOnFocus: false, // Prevents dismissing of toast on hover
 }).showToast();
-    
-    if(location.href.includes("results?") && !document.hidden) fetch(location.href).then(i => i.text()).then(html => {
+
+    if(location.href.includes("results?") && !document.hidden) fetch(`https://gremlins-api.reddit.com/results?prev_result=${last}&nightmode=1&platform=desktop`).then(i => i.text()).then(html => {
         let parser = new DOMParser();
         let doc = parser.parseFromString(html, "text/html");
         document.getElementsByTagName("gremlin-app")[0].innerHTML = doc.getElementsByTagName("gremlin-app")[0].innerHTML;
