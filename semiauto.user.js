@@ -63,10 +63,11 @@ async function play() {
 
     let abraP = checkExistingAbra(room.options.flatMap(x => x[0]));
     let spacP = Promise.all(room.options.flatMap(x => checkExistingSpacescience(x[0])));
+    let oceanP = Promise.all(room.options.flatMap(x => checkExistingOcean(x[0])));
     // let deteP = Promise.all(room.options.flatMap(x => checkDetector(x[1])));
     // cost of accuracy
 
-    let [abra, space/*, detector*/] = await Promise.all([abraP, spacP/*, deteP*/]);
+    let [abra, space, ocean] = await Promise.all([abraP, spacP, oceanP]);
 
     // console.table(abra);
     // console.table(space);
@@ -79,14 +80,13 @@ async function play() {
         // o is id
         // z is string
         let [o, z] = room.options[i];
-        if (abra[i] === "known fake" || space[i] === "known fake") {
+        if (abra[i] === "known fake" || space[i] === "known fake" || ocean[i] == "known fake") {
             answer = i;
-
             break;
-        } else if (abra[i] === "known human" || space[i] === "known human") {
+        } else if (abra[i] === "known human" || space[i] === "known human" || ocean[i] == "known human") {
             flag++;
             continue;
-        } else if (abra[i] === "unknown" && space[i] === "unknown") {
+        } else if (abra[i] === "unknown" && space[i] === "unknown" || ocean[i] == "known fake") {
             answer = i;
 
             // if (detector[i] > maxDetector) {
