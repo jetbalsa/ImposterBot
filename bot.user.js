@@ -131,16 +131,28 @@ setInterval(async () => {
             if(game[1] === "WIN") wins.push(game[0]);
             else if(game[1] === "LOSE") loses.push(game[0]);
             last = game[1];
-            Toastify({
-              text: game[1] + ": "+ game[0],
-              duration: 5000,
-              newWindow: true,
-              close: true,
-              gravity: "top", // `top` or `bottom`
-              position: 'left', // `left`, `center` or `right`
-              backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-              stopOnFocus: false, // Prevents dismissing of toast on hover
-            }).showToast();
+            if (game[1] == "WIN"):
+                Toastify({
+                  text: game[1] + ": "+ game[0],
+                  duration: 5000,
+                  newWindow: true,
+                  close: true,
+                  gravity: "top", // `top` or `bottom`
+                  position: 'left', // `left`, `center` or `right`
+                  backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                  stopOnFocus: false, // Prevents dismissing of toast on hover
+                }).showToast();
+            elif (game[1] == "LOSE"):
+                Toastify({
+                  text: game[1] + ": "+ game[0],
+                  duration: 5000,
+                  newWindow: true,
+                  close: true,
+                  gravity: "top", // `top` or `bottom`
+                  position: 'left', // `left`, `center` or `right`
+                  backgroundColor: "linear-gradient(to right, #b00023, #c93d54)",
+                  stopOnFocus: false, // Prevents dismissing of toast on hover
+                }).showToast();
         }
     )
 }, 1200)
