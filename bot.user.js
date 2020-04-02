@@ -148,7 +148,7 @@ setInterval(async () => {
     )
     locked = 0;
 }
-}, 2000)
+}, 500)
 
 setInterval(() => {
     let curstatus = getStats();
