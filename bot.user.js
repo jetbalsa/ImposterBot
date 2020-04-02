@@ -10,7 +10,6 @@
 // @require      https://github.com/LeoVerto/doorman/raw/master/doorman-lib.js?v=0.9
 // @updateurl    https://github.com/jrwr/imposterbot/raw/master/bot.user.js
 // ==/UserScript==
-
 let locked = 0;
 
 document.getElementsByTagName("head")[0].insertAdjacentHTML(
@@ -47,19 +46,20 @@ async function submitAnswer(token, id) {
     return JSON.parse(res);
 }
 async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array);
-  }
+    for (let index = 0; index < array.length; index++) {
+        await callback(array[index], index, array);
+    }
 }
 
 
 async function play() {
     let room = await getRoom();
-    let answer = 0, maxDetector = 0;
+    let answer = 0,
+        maxDetector = 0;
     console.table(room.options);
 
     // would be nicer if this just took single like the rest
-    console.log("abra");
+//     console.log("abra");
     let results = await checkExistingAbra(room.options.flatMap(x => x[0]));
 
     for (let i = 0; i < room.options.length; i++) {
@@ -70,7 +70,7 @@ async function play() {
             // if abra took single you could make this a for loop
             // with random server ordering
             // but would also have to make all take argument of both
-            console.log("spacescience");
+//             console.log("spacescience");
             let space = await checkExistingSpacescience(o);
             if (space === "known fake") {
                 answer = i;
@@ -87,13 +87,13 @@ async function play() {
                 // } else if (ocean === "known human") {
                 //     continue;
                 // } else {
-                    console.log("detector");
-                    let detector = await checkDetector(z);
-                    if (detector > maxDetector) {
-                        maxDetector = detector;
-                        answer = i;
-                        continue;
-                    }
+                // console.log("detector");
+                let detector = await checkDetector(z);
+                if (detector > maxDetector) {
+                    maxDetector = detector;
+                    answer = i;
+                    continue;
+                }
                 // }
             }
         } else if (results[i] === "known fake") {
@@ -123,20 +123,30 @@ async function submitAnswerToDB(answer, result, room) {
 
     return JSON.parse(res);
 }
+
+let timing = [];
+
 function getStats() {
-    console.log(wins);
+    const sum = timing.reduce((a, b) => a + b, 0);
+    const avg = (sum / timing.length) || 0;
+
+//     console.log(wins);
     return `All: ${wins.length+loses.length} -
 Wins: ${wins.length} (${((wins.length/(wins.length+loses.length))*100).toFixed(1)}%),
-Loses: ${loses.length} (${((loses.length/(wins.length+loses.length))*100).toFixed(1)}%)
+Loses: ${loses.length} (${((loses.length/(wins.length+loses.length))*100).toFixed(1)}%), Time (ms): ${avg}
 `;
 }
+
 window.last = "INVALID";
 window.wins = []; window.loses = [];
 setInterval(async () => {
 	if(locked === 0){
-	locked = 1
+    locked = 1
+    let t0 = performance.now();
     let game = await play();
     let submit = await submitAnswerToDB(game[0].trim(), game[1], game[2]);
+    let t1 = performance.now();
+    timing.push(t1 - t0);
     game[0] = game[0].trim();
     if(game[1] === "WIN") wins.push(game[0]);
     else if(game[1] === "LOSE") loses.push(game[0]);
@@ -154,6 +164,7 @@ Toastify({
    locked = 0;
 }
 }, 2000)
+
 setInterval(() => {
     let curstatus = getStats();
 Toastify({
