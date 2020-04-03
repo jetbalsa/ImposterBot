@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      1.1.11
+// @version      1.1.12
 // @description  A bot that uses few data sources to find the imposter and auto answers for you.
 // @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px(u/Hennihenner), qqii, cg
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
 // @match        https://gremlins-api.reddit.com/room*
 // @match        https://gremlins-api.reddit.com/results?*
-// @require      https://github.com/LeoVerto/doorman/raw/master/doorman-lib.js?v=0.9
+// @require      https://github.com/LeoVerto/doorman/raw/master/doorman-lib.js?v=1.6
 // @updateurl    https://github.com/jrwr/imposterbot/raw/master/bot.user.js
 // ==/UserScript==
 
@@ -70,7 +70,7 @@ async function play() {
             break;
         } else if (abra[i] === "known human" || space[i] === "known human") {
             continue;
-        } else if (abra[i] === "unknown" && space[i] === "unknown") {
+        } else if (abra[i] === "unknown" && (space[i] === "unknown" || space[i] === "maybe_human")) {
             answer = i;
             // if (detector[i] > maxDetector) {
             //     maxDetector = detector[i];
