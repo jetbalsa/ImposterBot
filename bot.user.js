@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      1.1.10
+// @version      1.1.11
 // @description  A bot that uses few data sources to find the imposter and auto answers for you.
 // @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px(u/Hennihenner), qqii, cg
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
