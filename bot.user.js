@@ -2,7 +2,7 @@
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
 // @version      1.1.8.1
-// @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
+// @description  A bot that uses few data sources to find the imposter.
 // @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px(u/Hennihenner), qqii, cg
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
 // @match        https://gremlins-api.reddit.com/room*
