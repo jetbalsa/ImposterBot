@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      1.1.9
-// @description  A bot that uses few data sources to find the imposter.
+// @version      1.1.10
+// @description  A bot that uses few data sources to find the imposter and auto answers for you.
 // @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px(u/Hennihenner), qqii, cg
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
 // @match        https://gremlins-api.reddit.com/room*
@@ -58,14 +58,8 @@ async function play() {
 
     let abraP = checkExistingAbra(room.options.flatMap(x => x[0]));
     let spacP = Promise.all(room.options.flatMap(x => checkExistingSpacescience(x[0])));
-    // let deteP = Promise.all(room.options.flatMap(x => checkDetector(x[1])));
-    // cost of accuracy
 
     let [abra, space/*, detector*/] = await Promise.all([abraP, spacP/*, deteP*/]);
-
-    // console.table(abra);
-    // console.table(space);
-    // console.table(detector);
 
     for (let i = 0; i < room.options.length; i++) {
         // o is id
