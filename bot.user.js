@@ -3,7 +3,7 @@
 // @namespace    jrwr.io
 // @version      1.1.7
 // @description  A bot that randomly chooses a entry and reports back to a central database at spacescience.tech
-// @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px, qqii, cg
+// @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px(u/Hennihenner), qqii, cg
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
 // @match        https://gremlins-api.reddit.com/room*
 // @match        https://gremlins-api.reddit.com/results?*
@@ -114,7 +114,7 @@ function getStats() {
 //     console.log(wins);
     return `All: ${wins.length+loses.length} -
 Wins: ${wins.length} (${((wins.length/(wins.length+loses.length))*100).toFixed(1)}%),
-Loses: ${loses.length} (${((loses.length/(wins.length+loses.length))*100).toFixed(1)}%), Time (ms): ${avg}
+Losses: ${loses.length} (${((loses.length/(wins.length+loses.length))*100).toFixed(1)}%), Time (ms): ${avg}
 `;
 }
 
@@ -137,7 +137,7 @@ setInterval(async () => {
                   text: game[1] + ": "+ game[0],
                   duration: 5000,
                   newWindow: true,
-                  close: true,
+                  close: false,
                   gravity: "top", // `top` or `bottom`
                   position: 'left', // `left`, `center` or `right`
                   backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
@@ -150,7 +150,7 @@ setInterval(async () => {
                   text: game[1] + ": "+ game[0],
                   duration: 5000,
                   newWindow: true,
-                  close: true,
+                  close: false,
                   gravity: "top", // `top` or `bottom`
                   position: 'left', // `left`, `center` or `right`
                   backgroundColor: "linear-gradient(to right, #b00023, #c93d54)",
@@ -160,11 +160,11 @@ setInterval(async () => {
             else if (game[1] == "INVALID")
             {
                 Toastify({
-                  text: game[1] + ": "+ game[0],
-                  duration: 5000,
+                  text: "inval",
+                  duration: 1000,
                   newWindow: true,
-                  close: true,
-                  gravity: "top", // `top` or `bottom`
+                  close: false,
+                  gravity: "bottom", // `top` or `bottom`
                   position: 'left', // `left`, `center` or `right`
                   backgroundColor: "linear-gradient(to right, #423e3f, #8f8b8c)",
                   stopOnFocus: false, // Prevents dismissing of toast on hover
@@ -178,7 +178,7 @@ setInterval(() => {
     let curstatus = getStats();
 Toastify({
   text: curstatus,
-  duration: 10000,
+  duration: 10100,
   newWindow: true,
   close: false,
   gravity: "bottom", // `top` or `bottom`
