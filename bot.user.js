@@ -160,13 +160,13 @@ setInterval(async () => {
             else if (game[1] == "INVALID")
             {
                 Toastify({
-                  text: "inval",
+                  text: "INVALID",
                   duration: 1000,
                   newWindow: true,
                   close: false,
                   gravity: "bottom", // `top` or `bottom`
                   position: 'left', // `left`, `center` or `right`
-                  backgroundColor: "linear-gradient(to right, #423e3f, #8f8b8c)",
+                  backgroundColor: "linear-gradient(to right, #4b6cb7, #182848)",
                   stopOnFocus: false, // Prevents dismissing of toast on hover
                 }).showToast();
             }
