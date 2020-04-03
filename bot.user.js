@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reddit April Fools Imposter Bot
 // @namespace    jrwr.io
-// @version      1.1.8.1
+// @version      1.1.9
 // @description  A bot that uses few data sources to find the imposter.
 // @author       dimden (https://dimden.dev/), jrwr (http://jrwr.io/), px(u/Hennihenner), qqii, cg
 // @match        https://gremlins-api.reddit.com/room?nightmode=1&platform=desktop
@@ -114,7 +114,7 @@ function getStats() {
 //     console.log(wins);
     return `All: ${wins.length+loses.length} -
 Wins: ${wins.length} (${((wins.length/(wins.length+loses.length))*100).toFixed(1)}%),
-Losses: ${loses.length} (${((loses.length/(wins.length+loses.length))*100).toFixed(1)}%), Time (ms): ${avg}
+Losses: ${loses.length} (${((loses.length/(wins.length+loses.length))*100).toFixed(1)}%), Time (ms): ${Math.floor(avg)}
 `;
 }
 
